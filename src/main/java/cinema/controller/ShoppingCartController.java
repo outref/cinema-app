@@ -37,13 +37,15 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/movie-sessions")
-    public void addToCart(Authentication auth, @RequestParam Long movieSessionId) {
+    public ShoppingCartResponseDto addToCart(Authentication auth,
+                                             @RequestParam Long movieSessionId) {
         UserDetails details = (UserDetails) auth.getPrincipal();
         String email = details.getUsername();
         User user = userService.findByEmail(email).orElseThrow(
                 () -> new RuntimeException("User with email " + email + " not found"));
         MovieSession movieSession = movieSessionService.get(movieSessionId);
-        shoppingCartService.addSession(movieSession, user);
+        return shoppingCartResponseDtoMapper.mapToDto(shoppingCartService
+                .addSession(movieSession, user));
     }
 
     @GetMapping("/by-user")

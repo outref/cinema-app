@@ -59,12 +59,12 @@ Feel free to change example values in request bodies or params and test the app 
 Application is structured according to N-Tier structure pattern with Presentation, Service and Data layers.
 
 ## 🤖 Technologies
-- <b>Java 17</b>
-- <b>Spring 5</b> for dependency injection.
+- <b>Java `17`</b>
+- <b>Spring `5.3.20`</b> for dependency injection.
 - <b>Spring MVC </b> to create RESTful endpoints.
-- <b>Spring Security</b> to implement authorization and authentication.
-- <b>Hibernate 5</b> for relational DB connection.
-- Deployed using <b>Apache Tomcat 9</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
+- <b>Spring Security `5.6.10`</b> to implement authorization and authentication.
+- <b>Hibernate `5.6.14.Final`</b> for relational DB connection.
+- Deployed using <b>Apache Tomcat `9.0.73`</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
 
 ## ⚙️ How to run locally
 1.  Clone this repository to your local machine using `git clone`.
