@@ -8,7 +8,7 @@ To avoid the hassle of running the application locally to try it out, you can us
 
 
 ## 🎯 Features (API endpoints)
-<b> HTTP-method -- /endpoint -- [Authorized roles] -- Feature description
+<b> HTTP-method -- /endpoint -- [Authorized roles] -- Feature description </b>
 
 - `POST /register`   [Non-authorized] : register new user
 - `GET /cinema-halls`  [USER or ADMIN] : get list of all halls
