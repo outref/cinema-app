@@ -1,3 +1,4 @@
+
 # <img src="https://raw.githubusercontent.com/outref/readme-recources/main/cinema.png"  width="48" height="55"> Cinema App
 ```
 RESTful, API-based movie theater application that implements authentication and
@@ -6,22 +7,38 @@ authorization with Spring Security.
 ## 🚀 Demo
 To avoid the hassle of running the application locally to try it out, you can use deployed demo by this address: http://13.48.85.241:8080/cinema-app
 
+## 🔐 Security
+Application implements Basic Auth scheme, which means that user's email and password have to be sent with every HTTP-request inside of a Authorization header (encoded in Base64). 
+This can be easily configured in Postman on Authorization tab for testing purposes.
+
+At launch application injects two default users into DB:
+[ADMIN] - admin@i.ua - admin123
+[USER] - user@i.ua - user123
+They can be used for testing both locally or in demo app. 
+
 
 ## 🎯 Features (API endpoints)
-<b> HTTP-method -- /endpoint -- [Authorized roles] -- Feature description </b>
-
-- `POST /register`   [Non-authorized] : register new user
-- `GET /cinema-halls`  [USER or ADMIN] : get list of all halls
-- `GET /movie-sessions/available`  [USER or ADMIN] : get list of sessions for given movie and day
-- `GET /users/by-email` [ADMIN] : get user's info
+- `POST /register`   [Non-authorized] : register new user -> 
+*{"email":"test@email.com", "password":"1234", "repeatPassword":"1234"}*
+- `GET /cinema-halls`  [USER or ADMIN] : get list of all cinema halls
+- `GET /movie-sessions/available?movieId=1&date=01.01.2023`  
+  [USER or ADMIN] : get list of sessions for given movie and day
+- `GET /users/by-email?email=some@email.com` [ADMIN] : get user's info
 - `GET /orders/shopping-carts/by-user` [USER] : get user's order history
-- `PUT /shopping-carts/movie-sessions` [USER]  - add a ticket of given movie session to the shopping cart
+- `PUT /shopping-carts/movie-sessions?movieSessionId=1` 
+  [USER] : add a ticket of given movie session to the shopping cart
 - `POST /orders/complete` [USER] : complete (create) order from shopping cart
-- `POST /movies` [ADMIN] : add new movie
-- `POST /cinema-halls` [ADMIN] : add new cinema hall
-- `POST /movie-sessions` [ADMIN]  : add new movie session
-- `PUT /movie-sessions` [ADMIN]  : update movie session
-- `DELETE /movie-sessions`  [ADMIN]  : delete movie session
+- `POST /movies` [ADMIN] : add new movie -> 
+  *{"title":"some movie", "description":"some description"}*
+- `POST /cinema-halls` [ADMIN] : add new cinema hall ->
+  *{"capacity":"50", "description":"some description"}*
+- `POST /movie-sessions` [ADMIN]  : add new movie session ->
+  *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*
+- `PUT /movie-sessions/{id}` [ADMIN]  : update movie session with given id -> 
+  *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*
+- `DELETE /movie-sessions/{id}`  [ADMIN]  : delete movie session with given id
+
+Feel free to change example values in request bodies or params and test the app using Postman or similar tool.
 
 ## 📖 Structure
 ![structure](https://raw.githubusercontent.com/outref/readme-recources/main/cinema-structure.png)
@@ -39,12 +56,12 @@ To avoid the hassle of running the application locally to try it out, you can us
 Application is structured according to N-Tier structure pattern with Presentation, Service and Data layers.
 
 ## 🤖 Technologies
-- <b>Java</b>
-- <b>Spring</b> for dependency injection.
+- <b>Java 17</b>
+- <b>Spring 5</b> for dependency injection.
 - <b>Spring MVC </b> to create RESTful endpoints.
 - <b>Spring Security</b> to implement authorization and authentication.
-- <b>Hibernate</b> for relational DB connection.
-- Deployed using <b>Apache Tomcat</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
+- <b>Hibernate 5</b> for relational DB connection.
+- Deployed using <b>Apache Tomcat 9</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
 
 ## ⚙️ How to run locally
 1.  Clone this repository to your local machine using `git clone`.
@@ -55,5 +72,3 @@ Application is structured according to N-Tier structure pattern with Presentatio
 6.  Copy the generated WAR file to the `webapps/` directory of your Tomcat installation and rename it to `taxi-service.war` .
 7.  Start Tomcat by running the `startup.sh` (or `startup.bat` on Windows) script in the `bin/` directory of your Tomcat installation.
 8.  Use Postman or similar tool to test the endpoints.
-
-
