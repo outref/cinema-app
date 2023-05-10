@@ -12,8 +12,11 @@ Application implements Basic Auth scheme, which means that user's email and pass
 This can be easily configured in Postman on Authorization tab for testing purposes.
 
 At launch application injects two default users into DB:
+
 [ADMIN] - admin@i.ua - admin123
+
 [USER] - user@i.ua - user123
+
 They can be used for testing both locally or in demo app. 
 
 
