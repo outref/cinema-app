@@ -5,7 +5,8 @@ RESTful, API-based movie theater application that implements authentication and
 authorization with Spring Security.
 ```
 ## 🚀 Demo
-To avoid the hassle of running the application locally to try it out, you can use deployed demo by this address: http://13.48.85.241:8080/cinema-app
+To avoid the hassle of running the application locally to try it out, you can use deployed demo by this address: http://13.48.85.241:8080/cinema-app  
+Postman collection - [Endpoints for testing](https://www.postman.com/outref/workspace/workspace/collection/26840886-893bc5e7-be31-4bd1-b703-59cd15cd19b4)
 
 ## 🔐 Security
 Application implements Basic Auth scheme, which means that user's email and password have to be sent with every HTTP-request inside of a Authorization header (encoded in Base64). 
@@ -22,12 +23,13 @@ They can be used for testing both locally or in demo app.
 
 ## 🎯 Features (API endpoints)
 - `POST /register`   [Non-authorized] : register new user ->  
-*{"email":"test@email.com", "password":"1234", "repeatPassword":"1234"}*
+*{"email":"test@email.com", "password":"12345678", "repeatPassword":"12345678"}*
 - `GET /cinema-halls`  [USER or ADMIN] : get list of all cinema halls
 - `GET /movie-sessions/available?movieId=1&date=01.01.2023`  
   [USER or ADMIN] : get list of sessions for given movie and day
 - `GET /users/by-email?email=some@email.com` [ADMIN] : get user's info
-- `GET /orders/shopping-carts/by-user` [USER] : get user's order history
+- `GET /orders` [USER] : get user's order history
+- `GET /shopping-carts/by-user` [USER] : retrieve user's shopping cart
 - `PUT /shopping-carts/movie-sessions?movieSessionId=1`  
   [USER] : add a ticket of given movie session to the shopping cart
 - `POST /orders/complete` [USER] : complete (create) order from shopping cart
@@ -59,12 +61,12 @@ Feel free to change example values in request bodies or params and test the app 
 Application is structured according to N-Tier structure pattern with Presentation, Service and Data layers.
 
 ## 🤖 Technologies
-- <b>Java 17</b>
-- <b>Spring 5</b> for dependency injection.
+- <b>Java `17`</b>
+- <b>Spring `5.3.20`</b> for dependency injection.
 - <b>Spring MVC </b> to create RESTful endpoints.
-- <b>Spring Security</b> to implement authorization and authentication.
-- <b>Hibernate 5</b> for relational DB connection.
-- Deployed using <b>Apache Tomcat 9</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
+- <b>Spring Security `5.6.10`</b> to implement authorization and authentication.
+- <b>Hibernate `5.6.14.Final`</b> for relational DB connection.
+- Deployed using <b>Apache Tomcat `9.0.73`</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
 
 ## ⚙️ How to run locally
 1.  Clone this repository to your local machine using `git clone`.
