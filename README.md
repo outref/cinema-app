@@ -21,23 +21,23 @@ They can be used for testing both locally or in demo app.
 
 
 ## 🎯 Features (API endpoints)
-- `POST /register`   [Non-authorized] : register new user -> 
+- `POST /register`   [Non-authorized] : register new user ->  
 *{"email":"test@email.com", "password":"1234", "repeatPassword":"1234"}*
 - `GET /cinema-halls`  [USER or ADMIN] : get list of all cinema halls
 - `GET /movie-sessions/available?movieId=1&date=01.01.2023`  
   [USER or ADMIN] : get list of sessions for given movie and day
 - `GET /users/by-email?email=some@email.com` [ADMIN] : get user's info
 - `GET /orders/shopping-carts/by-user` [USER] : get user's order history
-- `PUT /shopping-carts/movie-sessions?movieSessionId=1` 
+- `PUT /shopping-carts/movie-sessions?movieSessionId=1`  
   [USER] : add a ticket of given movie session to the shopping cart
 - `POST /orders/complete` [USER] : complete (create) order from shopping cart
-- `POST /movies` [ADMIN] : add new movie -> 
+- `POST /movies` [ADMIN] : add new movie ->  
   *{"title":"some movie", "description":"some description"}*
-- `POST /cinema-halls` [ADMIN] : add new cinema hall ->
+- `POST /cinema-halls` [ADMIN] : add new cinema hall ->  
   *{"capacity":"50", "description":"some description"}*
-- `POST /movie-sessions` [ADMIN]  : add new movie session ->
+- `POST /movie-sessions` [ADMIN]  : add new movie session ->  
   *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*
-- `PUT /movie-sessions/{id}` [ADMIN]  : update movie session with given id -> 
+- `PUT /movie-sessions/{id}` [ADMIN]  : update movie session with given id ->  
   *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*
 - `DELETE /movie-sessions/{id}`  [ADMIN]  : delete movie session with given id
 
@@ -51,7 +51,7 @@ Feel free to change example values in request bodies or params and test the app 
 - <b> dto/ </b> - package with <b>DTO</b> classes used for communication between application and API withouth exposing the models. 
 - <b> exception/ </b> - holds all custom exception classes.
 - <b> lib/ </b> - contains custom validators.
-- <b> model/ </b> - model classes, main entities used in application: <b> Movie </b> -- <b> CinemaHall </b> -- <b> MovieSession </b>, <b> ShoppingCart </b> -- <b> Order </b> -- <b> Ticket </b>, <b> User </b> -- <b> Role </b>.
+- <b> model/ </b> - model classes, main entities used in application: <b> Movie </b> + <b> CinemaHall </b> + <b> MovieSession </b>, <b> ShoppingCart </b> + <b> Order </b> + <b> Ticket </b>, <b> User </b> + <b> Role </b>.
 - <b> security/ </b> - holds <b>CustomUserDetailsService</b> class that builds UserDetails object based on clients input during authentication.
 - <b> service/ </b> - service layer of the application, also including mappers that turn models into DTOs and vice versa.
 - <b> util/ </b> - contains utility classes.
