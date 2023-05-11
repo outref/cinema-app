@@ -1,6 +1,7 @@
 package cinema.controller;
 
-import java.util.Date;
+import cinema.exception.DataProcessingException;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -22,7 +24,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatus status,
             WebRequest request) {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", new Date());
+        body.put("timestamp", LocalDateTime.now());
         body.put("status", status.value());
         List<String> errors = ex.getBindingResult()
                 .getAllErrors()
@@ -31,5 +33,15 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
                 .toList();
         body.put("errors", errors);
         return new ResponseEntity<>(body, headers, status);
+    }
+
+    @ExceptionHandler(DataProcessingException.class)
+    public final ResponseEntity<Object> handleUserNotFoundException(DataProcessingException ex,
+                                                                     WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.BAD_REQUEST);
+        body.put("error", "Invalid input");
+        return new ResponseEntity<>(body, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 }
