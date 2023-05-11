@@ -74,6 +74,6 @@ Application is structured according to N-Tier structure pattern with Presentatio
 3.  Ensure that you have Java, Apache Tomcat and any relational DB management system (like MySQL) installed on your system.
 4.  Configure the database settings in `src/main/resources/db.properties`.
 5. Build the application using `mvn package`.
-6.  Copy the generated WAR file to the `webapps/` directory of your Tomcat installation and rename it to `taxi-service.war` .
+6.  Copy the generated WAR file to the `webapps/` directory of your Tomcat installation and rename it to `cinema-app.war` .
 7.  Start Tomcat by running the `startup.sh` (or `startup.bat` on Windows) script in the `bin/` directory of your Tomcat installation.
 8.  Use Postman or similar tool to test the endpoints.
