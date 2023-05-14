@@ -5,43 +5,62 @@ RESTful, API-based movie theater application that implements authentication and
 authorization with Spring Security.
 ```
 ## 🚀 Demo
-To avoid the hassle of running the application locally to try it out, you can use deployed demo by this address: http://13.48.85.241:8080/cinema-app  
-Postman collection - [Endpoints for testing](https://www.postman.com/outref/workspace/workspace/collection/26840886-893bc5e7-be31-4bd1-b703-59cd15cd19b4)
+To avoid the hassle of running the application locally, try it out using deployed demo by this address: http://13.48.85.241:8080/cinema-app  
+Test the demo endpoints with this Postman collection - [Cinema-app collection](https://www.postman.com/outref/workspace/cinema-app/collection/26840886-893bc5e7-be31-4bd1-b703-59cd15cd19b4?action=share&creator=26840886)
 
 ## 🔐 Security
 Application implements Basic Auth scheme, which means that user's email and password have to be sent with every HTTP-request inside of a Authorization header (encoded in Base64). 
-This can be easily configured in Postman on Authorization tab for testing purposes.
+This can be easily configured in Postman on Authorization tab for testing purposes.  
 
-At launch application injects two default users into DB:
-
-[ADMIN] - admin@i.ua - admin123
-
-[USER] - user@i.ua - user123
-
+At launch application auto-inects two default users into DB:  
+[ADMIN] - admin@i.ua - admin123  
+[USER] - user@i.ua - user123  
 They can be used for testing both locally or in demo app. 
 
-
 ## 🎯 Features (API endpoints)
-- `POST /register`   [Non-authorized] : register new user ->  
-*{"email":"test@email.com", "password":"12345678", "repeatPassword":"12345678"}*
-- `GET /cinema-halls`  [USER or ADMIN] : get list of all cinema halls
-- `GET /movie-sessions/available?movieId=1&date=01.01.2023`  
-  [USER or ADMIN] : get list of sessions for given movie and day
-- `GET /users/by-email?email=some@email.com` [ADMIN] : get user's info
-- `GET /orders` [USER] : get user's order history
-- `GET /shopping-carts/by-user` [USER] : retrieve user's shopping cart
-- `PUT /shopping-carts/movie-sessions?movieSessionId=1`  
-  [USER] : add a ticket of given movie session to the shopping cart
-- `POST /orders/complete` [USER] : complete (create) order from shopping cart
-- `POST /movies` [ADMIN] : add new movie ->  
-  *{"title":"some movie", "description":"some description"}*
-- `POST /cinema-halls` [ADMIN] : add new cinema hall ->  
-  *{"capacity":"50", "description":"some description"}*
-- `POST /movie-sessions` [ADMIN]  : add new movie session ->  
-  *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*
-- `PUT /movie-sessions/{id}` [ADMIN]  : update movie session with given id ->  
-  *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*
-- `DELETE /movie-sessions/{id}`  [ADMIN]  : delete movie session with given id
+- `POST /register`  [Non-authorized]  
+Register new user 
+*{"email":"test@email.com", "password":"12345678", "repeatPassword":"12345678"}*  
+
+- `GET /cinema-halls`  [USER or ADMIN]  
+Get list of all cinema halls  
+
+- `GET /movie-sessions/available?movieId=1&date=01.01.2023`  [USER or ADMIN]  
+Get list of sessions for given movie and day  
+  
+- `GET /users/by-email?email=some@email.com`  [ADMIN]  
+Get user's info  
+
+- `GET /orders`  [USER]  
+Get user's order history  
+
+- `GET /shopping-carts/by-user`  [USER]  
+Retrieve user's shopping cart  
+
+- `PUT /shopping-carts/movie-sessions?movieSessionId=1`  [USER]  
+Add a ticket of given movie session to the shopping cart  
+ 
+- `POST /orders/complete`  [USER]  
+Complete (create) order from shopping cart  
+
+- `POST /movies`  [ADMIN]  
+Add new movie  
+*{"title":"some movie", "description":"some description"}*  
+  
+- `POST /cinema-halls`  [ADMIN]  
+Add new cinema hall  
+*{"capacity":"50", "description":"some description"}*  
+  
+- `POST /movie-sessions`  [ADMIN]  
+Add new movie session  
+*{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*  
+  
+- `PUT /movie-sessions/{id}`  [ADMIN]  
+Update movie session with given id  
+*{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*  
+  
+- `DELETE /movie-sessions/{id}`  [ADMIN]  
+Delete movie session with given id
 
 Feel free to change example values in request bodies or params and test the app using Postman or similar tool.
 
@@ -53,7 +72,10 @@ Feel free to change example values in request bodies or params and test the app 
 - <b> dto/ </b> - package with <b>DTO</b> classes used for communication between application and API withouth exposing the models. 
 - <b> exception/ </b> - holds all custom exception classes.
 - <b> lib/ </b> - contains custom validators.
-- <b> model/ </b> - model classes, main entities used in application: <b> Movie </b> + <b> CinemaHall </b> + <b> MovieSession </b>, <b> ShoppingCart </b> + <b> Order </b> + <b> Ticket </b>, <b> User </b> + <b> Role </b>.
+- <b> model/ </b> - model classes, main entities used in application:  
+<i> Movie, CinemaHall, MovieSession  
+ShoppingCart, Order, Ticket  
+User, Role. </i>
 - <b> security/ </b> - holds <b>CustomUserDetailsService</b> class that builds UserDetails object based on clients input during authentication.
 - <b> service/ </b> - service layer of the application, also including mappers that turn models into DTOs and vice versa.
 - <b> util/ </b> - contains utility classes.
