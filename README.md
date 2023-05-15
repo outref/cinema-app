@@ -1,12 +1,12 @@
 
 # <img src="https://raw.githubusercontent.com/outref/readme-recources/main/cinema.png"  width="48" height="55"> Cinema App
-```
-RESTful, API-based movie theater application that implements authentication and
-authorization with Spring Security.
-```
+``
+RESTful, API-based application that provides basic features of a movie theater and implements authentication, authorization and input validation.
+``
 ## 🚀 Demo
 To avoid the hassle of running the application locally, try it out using deployed demo by this address: http://13.48.85.241:8080/cinema-app  
-Test the demo endpoints with this Postman collection - [Cinema-app collection](https://www.postman.com/outref/workspace/cinema-app/collection/26840886-893bc5e7-be31-4bd1-b703-59cd15cd19b4?action=share&creator=26840886)
+Test the demo endpoints with this Postman collection - [Cinema-app collection](https://www.postman.com/outref/workspace/cinema-app/collection/26840886-893bc5e7-be31-4bd1-b703-59cd15cd19b4?action=share&creator=26840886)  
+Short video with app overview and presentation of demo-app features - [Youtube](https://youtu.be/lUlVQYrjPL8)
 
 ## 🔐 Security
 Application implements Basic Auth scheme, which means that user's email and password have to be sent with every HTTP-request inside of a Authorization header (encoded in Base64). 
@@ -18,51 +18,51 @@ At launch application auto-inects two default users into DB:
 They can be used for testing both locally or in demo app. 
 
 ## 🎯 Features (API endpoints)
-- `POST /register`  [Non-authorized]  
-Register new user 
+- Register new user  [Non-authenticated]  
+`POST /register`
 *{"email":"test@email.com", "password":"12345678", "repeatPassword":"12345678"}*  
 
-- `GET /cinema-halls`  [USER or ADMIN]  
-Get list of all cinema halls  
+- Get list of all cinema halls  [USER or ADMIN]  
+`GET /cinema-halls`  
 
-- `GET /movie-sessions/available?movieId=1&date=01.01.2023`  [USER or ADMIN]  
-Get list of sessions for given movie and day  
-  
-- `GET /users/by-email?email=some@email.com`  [ADMIN]  
-Get user's info  
+- Get list of sessions for given movie and day  [USER or ADMIN]  
+`GET /movie-sessions/available?movieId=1&date=01.01.2023`  
 
-- `GET /orders`  [USER]  
-Get user's order history  
+- Get user's info  [ADMIN]  
+`GET /users/by-email?email=some@email.com`  
 
-- `GET /shopping-carts/by-user`  [USER]  
-Retrieve user's shopping cart  
+- Get user's order history  [USER]  
+`GET /orders`  
 
-- `PUT /shopping-carts/movie-sessions?movieSessionId=1`  [USER]  
-Add a ticket of given movie session to the shopping cart  
+- Retrieve user's shopping cart  [USER]  
+`GET /shopping-carts/by-user`  
+
+- Add a ticket of given movie session to the shopping cart  [USER]  
+`PUT /shopping-carts/movie-sessions?movieSessionId=1`  
  
-- `POST /orders/complete`  [USER]  
-Complete (create) order from shopping cart  
+- Complete (create) order from shopping cart  [USER]  
+`POST /orders/complete`
 
-- `POST /movies`  [ADMIN]  
-Add new movie  
+- Add new movie  [ADMIN]  
+`POST /movies`  
 *{"title":"some movie", "description":"some description"}*  
   
-- `POST /cinema-halls`  [ADMIN]  
-Add new cinema hall  
+- Add new cinema hall  [ADMIN]  
+`POST /cinema-halls`  
 *{"capacity":"50", "description":"some description"}*  
   
-- `POST /movie-sessions`  [ADMIN]  
-Add new movie session  
+- Add new movie session  [ADMIN]  
+`POST /movie-sessions`  
 *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*  
   
-- `PUT /movie-sessions/{id}`  [ADMIN]  
-Update movie session with given id  
+- Update movie session with given id  [ADMIN]  
+`PUT /movie-sessions/{id}`  
 *{"movieId":"1", "cinemaHallId":"1", "showTime":"2023-01-01T09:00:00.000"}*  
   
-- `DELETE /movie-sessions/{id}`  [ADMIN]  
-Delete movie session with given id
+- Delete movie session with given id  [ADMIN]  
+`DELETE /movie-sessions/{id}`  
 
-Feel free to change example values in request bodies or params and test the app using Postman or similar tool.
+Feel free to change sample values in request bodies or params and test the app using Postman or similar tool.
 
 ## 📖 Structure
 ![structure](https://raw.githubusercontent.com/outref/readme-recources/main/cinema-structure.png)
@@ -88,6 +88,7 @@ Application is structured according to N-Tier structure pattern with Presentatio
 - <b>Spring MVC </b> to create RESTful endpoints.
 - <b>Spring Security `5.6.10`</b> to implement authorization and authentication.
 - <b>Hibernate `5.6.14.Final`</b> for relational DB connection.
+- <b>Maven</b> build tool.
 - Deployed using <b>Apache Tomcat `9.0.73`</b> running om Amazon <b>AWS EC2</b> instance and <b>RDS MySQL</b> database.
 
 ## ⚙️ How to run locally
